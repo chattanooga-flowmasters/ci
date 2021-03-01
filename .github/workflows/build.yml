@@ -5,9 +5,8 @@ on: [workflow_dispatch]
 jobs:
   build:
     name: Build
-
     runs-on: ubuntu-16.04
-
+    environment: Production
     steps:
 
       - uses: actions/checkout@v2
