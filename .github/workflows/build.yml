@@ -1,0 +1,23 @@
+name: Build
+
+on: [workflow_dispatch]
+
+jobs:
+  build:
+    name: Build
+
+    runs-on: ubuntu-16.04
+
+    steps:
+
+      - uses: actions/checkout@v2
+      
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '12'
+
+      - name: Test
+        shell: bash
+        run: |
+          echo "${{ secrets.PRODUCTION_SECRET }}"
+          
