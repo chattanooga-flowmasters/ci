@@ -10,10 +10,6 @@ jobs:
     steps:
 
       - uses: actions/checkout@v2
-      
-      - uses: actions/setup-node@v2
-        with:
-          node-version: '12'
 
       - name: Write Hello World
         shell: bash
@@ -31,7 +27,19 @@ jobs:
         shell: bash
         run: |
           echo "Build: ${{ secrets.PRODUCTION_SECRET }}"
-          
+ 
+  deploy:
+    name: Deploy
+    runs-on: ubuntu-16.04
+    environment: Production
+    steps:
+
+      - uses: actions/checkout@v2
+      
+      - uses: actions/download-artifact@v2
+        with:
+          name: dist
+
       - name: Deploy
         shell: bash
         run: |
