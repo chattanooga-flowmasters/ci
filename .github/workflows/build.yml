@@ -15,8 +15,25 @@ jobs:
         with:
           node-version: '12'
 
-      - name: Test
+      - name: Write Hello World
         shell: bash
         run: |
-          echo "${{ secrets.PRODUCTION_SECRET }}"
+          echo "hello world" > hello-world.txt
+
+      - name: Archive production artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: dist
+          path: |
+            hello-world.txt
+
+      - name: Build
+        shell: bash
+        run: |
+          echo "Build: ${{ secrets.PRODUCTION_SECRET }}"
+          
+      - name: Deploy
+        shell: bash
+        run: |
+          echo "Deploy: ${{ secrets.PRODUCTION_SECRET }}"
           
