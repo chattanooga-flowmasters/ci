@@ -5,7 +5,7 @@ on: [workflow_dispatch]
 jobs:
   build:
     name: Build
-    runs-on: ubuntu-16.04
+    runs-on: ubuntu-latest
     environment: Production
     steps:
 
@@ -29,9 +29,55 @@ jobs:
           echo "Build: ${{ secrets.PRODUCTION_SECRET }}"
  
   deploy:
-    name: Deploy
+    name: Deploy Dev
     needs: Build
-    runs-on: ubuntu-16.04
+    runs-on: ubuntu-latest
+    environment: Production
+    steps:
+
+      - uses: actions/checkout@v2
+      
+      - uses: actions/download-artifact@v2
+        with:
+          name: dist
+
+      - name: List Hello World
+        shell: bash
+        run: |
+          ls -la
+
+      - name: Deploy
+        shell: bash
+        run: |
+          echo "Deploy: ${{ secrets.PRODUCTION_SECRET }}"
+          
+  deploy:
+    name: Deploy QA
+    needs: Build
+    runs-on: ubuntu-latest
+    environment: Production
+    steps:
+
+      - uses: actions/checkout@v2
+      
+      - uses: actions/download-artifact@v2
+        with:
+          name: dist
+
+      - name: List Hello World
+        shell: bash
+        run: |
+          ls -la
+
+      - name: Deploy
+        shell: bash
+        run: |
+          echo "Deploy: ${{ secrets.PRODUCTION_SECRET }}"
+          
+  deploy:
+    name: Deploy Staging
+    needs: Build
+    runs-on: ubuntu-latest
     environment: Production
     steps:
 
