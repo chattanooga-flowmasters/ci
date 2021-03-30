@@ -6,7 +6,7 @@ jobs:
   build:
     name: Build
     runs-on: ubuntu-latest
-    environment: Production
+    environment: Dev
     steps:
 
       - uses: actions/checkout@v2
@@ -32,7 +32,7 @@ jobs:
     name: Deploy Dev
     needs: Build
     runs-on: ubuntu-latest
-    environment: Production
+    environment: Dev
     steps:
 
       - uses: actions/checkout@v2
@@ -55,7 +55,7 @@ jobs:
     name: Deploy QA
     needs: Build
     runs-on: ubuntu-latest
-    environment: Production
+    environment: QA
     steps:
 
       - uses: actions/checkout@v2
@@ -78,7 +78,7 @@ jobs:
     name: Deploy Staging
     needs: Build
     runs-on: ubuntu-latest
-    environment: Production
+    environment: Staging
     steps:
 
       - uses: actions/checkout@v2
