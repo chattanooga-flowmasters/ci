@@ -6,7 +6,6 @@ jobs:
   build:
     name: Build Dev
     runs-on: ubuntu-latest
-    environment: Dev
     steps:
 
       - uses: actions/checkout@v2
