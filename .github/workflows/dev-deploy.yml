@@ -1,0 +1,38 @@
+name: Dev Deploy
+
+on: [workflow_dispatch]
+
+jobs:
+  deploy:
+    name: Deploy Dev
+    needs: Build
+    runs-on: ubuntu-latest
+    environment: Dev
+    steps:
+      - name: Download artifact
+        uses: dawidd6/action-download-artifact@v2
+        with:
+          # Required, workflow file name or ID
+          workflow: dev-deploy.yml
+          # Optional, the status or conclusion of a completed workflow to search for
+          # Can be one of a workflow conclusion::
+          # "failure", "success", "neutral", "cancelled", "skipped", "timed_out", "action_required"
+          # Or a workflow status:
+          # "completed", "in_progress", "queued"
+          # Default: "completed,success"
+          workflow_conclusion: success
+          # Optional, uploaded artifact name,
+          # will download all artifacts if not specified
+          # and extract them in respective subdirectories
+          # https://github.com/actions/download-artifact#download-all-artifacts
+          name: dist
+
+      - name: List Hello World
+        shell: bash
+        run: |
+          ls -la
+
+      - name: Deploy
+        shell: bash
+        run: |
+          echo "Deploy: ${{ secrets.PRODUCTION_SECRET }}"

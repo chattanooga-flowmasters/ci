@@ -1,0 +1,30 @@
+name: Dev Build
+
+on: [workflow_dispatch]
+
+jobs:
+  build:
+    name: Build Dev
+    runs-on: ubuntu-latest
+    environment: Dev
+    steps:
+
+      - uses: actions/checkout@v2
+
+      - name: Write Hello World
+        shell: bash
+        run: |
+          echo "hello world" > hello-world.txt
+
+      - name: Archive production artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: dist
+          path: |
+            hello-world.txt
+
+      - name: Build
+        shell: bash
+        run: |
+          echo "Build: ${{ secrets.PRODUCTION_SECRET }}"
+ 
