@@ -2,7 +2,7 @@ name: Dev Deploy
 
 on: 
   workflow_run:
-    workflows: ['Dev Build']
+    workflows: ['Dev Build', 'Dev Build2']
     types: [completed]
   workflow_dispatch:
 
