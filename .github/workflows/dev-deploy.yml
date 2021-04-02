@@ -1,11 +1,5 @@
 name: Dev Deploy
 
-# on: 
-#   workflow_run:
-#     workflows: ['Dev Build']
-#     types: [completed]
-#   workflow_dispatch:
-
 jobs:
   deploy:
     name: Deploy Dev
