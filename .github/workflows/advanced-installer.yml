@@ -13,6 +13,7 @@ jobs:
       - name: Download Advanced Installer
         run: |
           Invoke-WebRequest https://www.advancedinstaller.com/downloads/advinst.msi -OutFile advinst.msi
+          dir
           msiexec /i advinst.msi /qn
           dir "C:\\Program Files (x86)\\"
           dir "C:\\Program Files (x86)\\Caphyon\\"
