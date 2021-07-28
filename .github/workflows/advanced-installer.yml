@@ -1,0 +1,17 @@
+name: Build
+
+on: [workflow_dispatch]
+
+jobs:
+  build:
+    name: Build
+    runs-on: windows-latest
+    steps:
+
+      - uses: actions/checkout@v2
+
+      - name: Download Advanced Installer
+        run: |
+          Invoke-WebRequest https://www.advancedinstaller.com/downloads/advinst.msi -OutFile advinst.msi
+          msiexec /i advinst.msi /qn
+          "C:\Program Files (x86)\Caphyon\Advanced Installer 16.9\bin\x86\AdvancedInstaller.com" /register <my_license_key_here>
