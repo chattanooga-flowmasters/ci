@@ -14,4 +14,4 @@ jobs:
         run: |
           Invoke-WebRequest https://www.advancedinstaller.com/downloads/advinst.msi -OutFile advinst.msi
           msiexec /i advinst.msi /qn
-          & "C:\Program Files (x86)\Caphyon\Advanced Installer 16.9\bin\x86\AdvancedInstaller.com" /register <my_license_key_here>
+          & "C:\Program Files (x86)\Caphyon\Advanced Installer 16.9\bin\x86\AdvancedInstaller.com" /register abcdefg
