@@ -13,8 +13,5 @@ jobs:
       - name: Download Advanced Installer
         run: |
           Invoke-WebRequest https://www.advancedinstaller.com/downloads/advinst.msi -OutFile advinst.msi
-          dir
-          msiexec /i advinst.msi /qn
-          dir "C:\\Program Files (x86)\\"
-          dir "C:\\Program Files (x86)\\Caphyon\\"
-          & "C:\Program Files (x86)\Caphyon\Advanced Installer 16.9\bin\x86\AdvancedInstaller.com" /register abcdefg
+          Start-Process -Wait -FilePath msiexec -ArgumentList /i, "advinst.msi", /qn
+          & "C:/Program Files (x86)/Caphyon/Advanced Installer 18.5/bin/x86/AdvancedInstaller.com" /register abcdefg
